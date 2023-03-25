@@ -1,20 +1,20 @@
 package com.example.Subject.model.Users;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "parent", schema = "users")
+@Table(name = "teacher",schema = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Parent {
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,18 +28,13 @@ public class Parent {
     @NotEmpty
     private String lastName;
 
-    @Column(name = "phone")
-    @Size(min = 3,max = 20)
-    @NotEmpty
-    private String phone;
-
-    @Column(name = "email")
-    @Email
-    @NotEmpty
-    private String email;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classTeacher", cascade = CascadeType.ALL)
     private List<Student> students;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "teacher_specialization",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialization_id"))
+    private Set<Specialization> specializations = new HashSet<>();
 
 }

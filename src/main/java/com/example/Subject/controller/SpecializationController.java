@@ -43,5 +43,11 @@ public class SpecializationController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id){
+        if(!specializationService.deleteById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }

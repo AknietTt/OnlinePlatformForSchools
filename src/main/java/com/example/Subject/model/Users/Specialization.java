@@ -2,13 +2,15 @@ package com.example.Subject.model.Users;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "specialization",schema = "users")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Specialization {
@@ -20,4 +22,6 @@ public class Specialization {
     @NotEmpty
     private String name;
 
+    @ManyToMany(mappedBy = "specializations")
+    private Set<Teacher> teachers = new HashSet<>();
 }

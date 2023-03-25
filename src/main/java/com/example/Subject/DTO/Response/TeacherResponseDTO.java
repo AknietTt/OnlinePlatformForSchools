@@ -1,6 +1,9 @@
 package com.example.Subject.DTO.Response;
 
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -8,9 +11,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class DirectorResponseDTO {
+@AllArgsConstructor
+public class TeacherResponseDTO {
     @NotNull
     @Positive
     private int id;
@@ -20,8 +23,4 @@ public class DirectorResponseDTO {
 
     @NotEmpty
     private String lastName;
-
-    @Email
-    @NotEmpty
-    private String email;
 }

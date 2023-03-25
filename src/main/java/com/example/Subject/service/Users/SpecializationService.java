@@ -54,4 +54,13 @@ public class SpecializationService {
         return  result;
 
     }
+
+    public boolean deleteById(int id) {
+        try {
+            specializationRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

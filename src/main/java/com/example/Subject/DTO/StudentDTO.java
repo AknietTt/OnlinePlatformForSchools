@@ -1,6 +1,5 @@
-package com.example.Subject.DTO.Response;
+package com.example.Subject.DTO;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -8,9 +7,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class DirectorResponseDTO {
+@AllArgsConstructor
+public class StudentDTO {
     @NotNull
     @Positive
     private int id;
@@ -21,7 +20,11 @@ public class DirectorResponseDTO {
     @NotEmpty
     private String lastName;
 
-    @Email
-    @NotEmpty
-    private String email;
+    @NotNull
+    @Positive
+    private int parentId;
+
+    @NotNull
+    @Positive
+    private int classTeacherId;
 }

@@ -1,20 +1,16 @@
 package com.example.Subject.model.Users;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "parent", schema = "users")
+@Table(name = "student",schema = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Parent {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,18 +24,11 @@ public class Parent {
     @NotEmpty
     private String lastName;
 
-    @Column(name = "phone")
-    @Size(min = 3,max = 20)
-    @NotEmpty
-    private String phone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Parent parent;
 
-    @Column(name = "email")
-    @Email
-    @NotEmpty
-    private String email;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Student> students;
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "class_teacher_id")
+    private Teacher classTeacher;
 }
